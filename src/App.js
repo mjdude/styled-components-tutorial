@@ -19,21 +19,29 @@ const Gallery = styled.div`
 `
 
 const Thumbnail = styled.img`
-  flex-grow: 1;
-  width: 300px;
-  height: 250px;
-  padding: 5px;
-  margin@ 15px;
-  border: 1px solid ${mainColor};
-  border-radius: 8px;
-`
+flex-grow: 1;
+width: 300px;
+height: 250px;
+padding: 5px;
+margin: 15px;
+${props => {
+  if (props.showBorder) {
+    return `
+      border: 1px solid ${mainColor};
+      border-radius: 8px;
+    `;
+  }
+}}
+`;
 
 class App extends Component {
   render() {
 
     const thumbnails = Array.from({ length: 5 }, (_, index) => {
-      return <Thumbnail key={index + 1} src={require(`../assets/thumbnail-${index + 1}.jpeg`)} />;
+      const showBorder = index % 2 === 0;
+      return <Thumbnail key={index + 1} src={require(`../assets/thumbnail-${index + 1}.jpeg`)} showBorder={showBorder} />;
     });
+
     return (
       <div className={this.props.className}>
         <Title color={mainColor}>Mystagram</Title>
