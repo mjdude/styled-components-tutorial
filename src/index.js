@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { injectGlobal } from "styled-components";
 
 import App from './App';
 
@@ -8,3 +9,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+injectGlobal`
+  body{
+    background-color: ghostwhite;
+    padding: 0;
+    margin: 0;
+    font-family: cursive;
+  }
+`
